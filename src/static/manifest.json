@@ -1,0 +1,45 @@
+{
+    "manifest_version": 3,
+    "name": "suicidal intent detector",
+    "description": "a suicidal intent detector that uses roBERTa to detect suicidal intent in text.",
+    "version": "1.0.0",
+    "action" : {
+        "default_popup": "popup.html",
+        "default_title": "suicidal intent detector",
+        "default_icon" : "icon.png"
+    },
+    "permissions": [
+        "scripting",
+        "tabs",
+        "storage",
+        "commands",
+        "activeTab",
+        "notifications"
+    ],
+    "icons": {
+        "16" : "icon.png",
+        "48" : "icon.png",
+        "128" : "icon.png"
+    },
+    "options_page": "options.html",
+    "background": {
+        "service_worker": "background.js"
+    },
+    "commands": {
+        "select-element": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+Y"
+            },
+            "description": "Select an element to clip and save its text."
+        }
+    },
+    "externally_connectable": {
+        "matches": [ "<all_urls>" ]
+      },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["contentScript.js"]
+        }
+    ]
+}
